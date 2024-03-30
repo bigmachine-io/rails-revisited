@@ -72,3 +72,4 @@ end
 gem 'spina'
 
 gem "devise", "~> 4.9"
+gem "devise-passwordless"
