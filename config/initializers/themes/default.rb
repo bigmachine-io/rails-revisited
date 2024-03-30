@@ -22,10 +22,16 @@ Spina::Theme.register do |theme|
   # - Repeater
   theme.parts = [
     {name: "text", title: "Body", hint: "Your main content", part_type: "Spina::Parts::Text"},
+    {name: "body", title: "Body", hint: "Your main content", part_type: "Spina::Parts::Text"},
+    {name: "title", title: "Title", part_type: "Spina::Parts::Line"},
+    {name: "slug", title: "Slug", part_type: "Spina::Parts::Line"},
     {name: "summary", title: "Summary", hint: "A summary for your page", part_type: "Spina::Parts::Line"},
     {name: "image", title: "Image", hint: "An image for your stuff", part_type: "Spina::Parts::Image"},
     {name: "link", title: "Link", hint: "A URL", part_type: "Spina::Parts::Line"},
     {name: "linktext", title: "Link Text", hint: "The text for a link", part_type: "Spina::Parts::Line"},
+    {name: "vimeo", title: "Vimeo ID", hint: "The text for a link", part_type: "Spina::Parts::Line"},
+    {name: "problem", title: "Problem", part_type: "Spina::Parts::Repeater", parts: %w[title text image link linktext]},
+    {name: "empathy", title: "Empathy", part_type: "Spina::Parts::Repeater", parts: %w[title text image link linktext]},
   ]
 
   # View templates
@@ -34,7 +40,10 @@ Spina::Theme.register do |theme|
   # by referencing them from the theme.parts configuration above.
   theme.view_templates = [
     {name: "homepage", title: "Homepage", parts: %w[text]},
-    {name: "show", title: "Page", parts: %w[summary text image link linktext]}
+    {name: "show", title: "Page", parts: %w[summary text image link linktext]},
+    {name: "sales", title: "Sales Page", parts: %w[summary text image link linktext problem empathy]},
+    {name: "course", title: "Course Page", parts: %w[slug summary body]},
+    {name: "lesson", title: "Lesson Page", parts: %w[slug vimeo summary body]},
   ]
 
   # Custom pages
@@ -65,5 +74,5 @@ Spina::Theme.register do |theme|
   theme.plugins = []
 
   # Embeds (optional)
-  theme.embeds = []
+  theme.embeds = %w(button youtube vimeo gist)
 end

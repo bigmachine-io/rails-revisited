@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_28_235159) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_30_002449) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,41 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_235159) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "courses", id: :serial, force: :cascade do |t|
+    t.text "sku", null: false
+    t.text "name", null: false
+    t.text "description"
+    t.text "summary"
+    t.text "github"
+    t.text "discussion"
+    t.text "download"
+    t.timestamptz "created_at", default: -> { "now()" }, null: false
+    t.timestamptz "updated_at", default: -> { "now()" }, null: false
+    t.boolean "active", default: true, null: false
+  end
+
+  create_table "lessons", id: :serial, force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.text "title", null: false
+    t.text "slug", null: false
+    t.boolean "free", default: false, null: false
+    t.text "summary"
+    t.text "description"
+    t.text "category", null: false
+    t.integer "index", default: 0, null: false
+    t.integer "duration", default: 0, null: false
+    t.text "vimeo_id"
+    t.text "youtube_id"
+    t.text "github"
+    t.text "fa_icon", default: "fa-play", null: false
+    t.text "mdi_icon", default: "mdi-play-circle-outline", null: false
+    t.text "download_url"
+    t.timestamptz "created_at", default: -> { "now()" }, null: false
+    t.timestamptz "updated_at", default: -> { "now()" }, null: false
+    t.text "markdown"
+    t.text "gist"
   end
 
   create_table "spina_accounts", id: :serial, force: :cascade do |t|
@@ -281,9 +316,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_235159) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "lessons", "courses", name: "lessons_course_id_fkey"
 end
