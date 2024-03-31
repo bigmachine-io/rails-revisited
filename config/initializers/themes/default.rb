@@ -32,6 +32,7 @@ Spina::Theme.register do |theme|
     {name: "vimeo", title: "Vimeo ID", hint: "The text for a link", part_type: "Spina::Parts::Line"},
     {name: "problem", title: "Problem", part_type: "Spina::Parts::Repeater", parts: %w[title text image link linktext]},
     {name: "empathy", title: "Empathy", part_type: "Spina::Parts::Repeater", parts: %w[title text image link linktext]},
+    {name: "features", title: "Features", part_type: "Spina::Parts::Repeater", parts: %w[title text image link linktext]},
   ]
 
   # View templates
@@ -39,7 +40,7 @@ Spina::Theme.register do |theme|
   # You define which parts you want to enable for every view template
   # by referencing them from the theme.parts configuration above.
   theme.view_templates = [
-    {name: "homepage", title: "Homepage", parts: %w[text]},
+    {name: "homepage", title: "Homepage", parts: %w[text image link linktext features]},
     {name: "show", title: "Page", parts: %w[summary text image link linktext]},
     {name: "sales", title: "Sales Page", parts: %w[summary text image link linktext problem empathy]},
     {name: "course", title: "Course Page", parts: %w[slug summary body]},

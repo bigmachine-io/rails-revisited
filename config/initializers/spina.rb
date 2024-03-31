@@ -49,7 +49,7 @@ Spina.configure do |config|
   # Specify the module that handles authentication
   # You can swap this out for something like Devise, or you can use your own authentication.
   # The default is Spina::Authentication::Sessions and includes basic user management
-  # config.authentication = "Spina::Authentication::Sessions"
+config.authentication = "BigAuth"
 
   # Mailers
   # ===============

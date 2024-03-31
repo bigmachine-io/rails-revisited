@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :magic_link_authenticatable, :validatable, :rememberable,
     :omniauthable, omniauth_providers: %i[github]
 
+  def is_admin?
+    return true if email =="robconery@gmail.com"
+  end
+
   def self.from_omniauth(auth)
     user = User.find_by(email: auth.info.email)
     unless user
