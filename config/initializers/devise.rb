@@ -334,4 +334,5 @@ Devise.setup do |config|
   # generated before the user's current sign in time to be expired. In other words,
   # each time you sign in, all existing magic links will be considered invalid.
   # config.passwordless_expire_old_tokens_on_sign_in = false
+  config.omniauth :github, ENV["GITHUB_ID"], ENV["GITHUB_SECRET"], scope: "user:email"
 end

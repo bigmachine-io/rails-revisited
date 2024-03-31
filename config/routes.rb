@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   devise_for :users,
-    controllers: { sessions: "users/passwordless"}
+    controllers: { sessions: "users/passwordless", omniauth_callbacks: 'users/omniauth_callbacks'}
   resources :users
 
   #get '/about', to: 'home#about'

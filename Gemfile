@@ -73,3 +73,5 @@ gem 'spina'
 
 gem "devise", "~> 4.9"
 gem "devise-passwordless"
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
