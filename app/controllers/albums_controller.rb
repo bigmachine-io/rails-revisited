@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :is_admin!, except: %i[ index show ]
   before_action :set_album, only: %i[ show edit update destroy ]
 
   # GET /albums or /albums.json

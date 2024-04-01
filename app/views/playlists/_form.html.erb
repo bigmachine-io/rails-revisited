@@ -19,4 +19,14 @@
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
+  <h2>Tracks</h2>
+  <table>
+    <%=form.collection_check_boxes(:track_ids, Track.all, :id, :name) do |b| %>
+      <tr>
+        <td><%= b.check_box %></td>
+        <td><%= b.label %></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
+

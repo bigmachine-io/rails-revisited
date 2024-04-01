@@ -154,6 +154,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_232448) do
     t.text "name"
   end
 
+  create_table "playlists_tracks", primary_key: ["playlist_id", "track_id"], force: :cascade do |t|
+    t.integer "playlist_id", null: false
+    t.integer "track_id", null: false
+  end
+
   create_table "spina_accounts", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -420,7 +425,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_232448) do
   add_foreign_key "invoice_lines", "invoices", name: "invoice_lines_invoice_id_fkey"
   add_foreign_key "invoices", "customers", name: "invoices_customer_id_fkey"
   add_foreign_key "lessons", "courses", name: "lessons_course_id_fkey"
-  add_foreign_key "playlist_tracks", "playlists", name: "playlist_tracks_playlist_id_fkey"
-  add_foreign_key "playlist_tracks", "tracks", name: "playlist_tracks_track_id_fkey"
+  add_foreign_key "playlists_tracks", "playlists", name: "playlists_tracks_playlist_id_fkey"
+  add_foreign_key "playlists_tracks", "tracks", name: "playlists_tracks_track_id_fkey"
   add_foreign_key "tracks", "albums", name: "tracks_album_id_fkey"
 end
