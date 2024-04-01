@@ -12,4 +12,5 @@ rails g scaffold invoice customer:references invoice_date:date billing_address b
 
 rails g scaffold media_type name:uniq --no-migration  --no-jbuilder
 rails g scaffold playlist name:uniq --no-migration  --no-jbuilder
-rails g scaffold track name composer milliseconds:int bytes:int unit_price:decimal album:references media_type:references genre:references --no-migration  --no-jbuilder
+
+rails g scaffold track name composer milliseconds:integer bytes:integer unit_price:decimal album:references media_type:references genre:references --no-migration  --no-jbuilder

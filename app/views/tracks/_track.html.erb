@@ -1,0 +1,47 @@
+<div id="<%= dom_id track %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= track.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Composer:</strong>
+    <%= track.composer %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Milliseconds:</strong>
+    <%= track.milliseconds %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Bytes:</strong>
+    <%= track.bytes %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Unit price:</strong>
+    <%= track.unit_price %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Album:</strong>
+    <%= track.album_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Media type:</strong>
+    <%= track.media_type_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Genre:</strong>
+    <%= track.genre_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this track", track, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this track", edit_track_path(track), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
