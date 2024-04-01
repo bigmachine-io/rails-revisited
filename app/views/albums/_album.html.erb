@@ -1,0 +1,22 @@
+<div id="<%= dom_id album %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Title:</strong>
+    <%= album.title %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Artist:</strong>
+    <%= album.artist_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Price:</strong>
+    <%= album.price %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this album", album, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this album", edit_album_path(album), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

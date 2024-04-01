@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :playlists
+  resources :media_types
+  resources :invoices
+  resources :genres
+  resources :artists
+  resources :albums
+  resources :customers
   
   devise_for :users,
     path: '',
@@ -7,6 +14,7 @@ Rails.application.routes.draw do
       sessions: "users/passwordless", 
       omniauth_callbacks: 'users/omniauth_callbacks'
     }
+    
   resources :users
 
   #get '/about', to: 'home#about'

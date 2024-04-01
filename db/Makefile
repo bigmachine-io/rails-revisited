@@ -1,7 +1,4 @@
-rebuild: dev test schema seed
-
-seed:
-	rails db:seed:replant
+rebuild: dev change schema migrate
 
 migrate:
 	rails db:migrate
@@ -10,10 +7,10 @@ schema:
 	rails db:schema:dump
 
 dev:
-	psql -q bigrail_development < db.sql
+	psql -q railz_development < db.sql
 
-test:
-	psql -q bigrail_test < db.sql
+change:
+	psql -q railz_development < change.sql
 
 
-.PHONY: dev test migrate schema db seed
+.PHONY: dev change migrate schema db

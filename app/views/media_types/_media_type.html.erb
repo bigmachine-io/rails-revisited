@@ -1,0 +1,12 @@
+<div id="<%= dom_id media_type %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= media_type.name %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this media type", media_type, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this media type", edit_media_type_path(media_type), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

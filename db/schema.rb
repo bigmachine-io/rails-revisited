@@ -42,6 +42,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_232448) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "albums", id: :serial, force: :cascade do |t|
+    t.text "title", null: false
+    t.integer "artist_id", null: false
+    t.decimal "price", precision: 10, scale: 2, default: "0.0", null: false
+  end
+
+  create_table "artists", id: :serial, force: :cascade do |t|
+    t.text "name"
+  end
+
   create_table "courses", id: :serial, force: :cascade do |t|
     t.text "sku", null: false
     t.text "name", null: false
@@ -53,6 +63,60 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_232448) do
     t.timestamptz "created_at", default: -> { "now()" }, null: false
     t.timestamptz "updated_at", default: -> { "now()" }, null: false
     t.boolean "active", default: true, null: false
+  end
+
+  create_table "customers", id: :serial, force: :cascade do |t|
+    t.text "first_name", null: false
+    t.text "last_name", null: false
+    t.text "company"
+    t.text "address"
+    t.text "city"
+    t.text "state"
+    t.text "country"
+    t.text "postal_code"
+    t.text "phone"
+    t.text "fax"
+    t.text "email", null: false
+    t.integer "support_rep_id"
+  end
+
+  create_table "employees", id: :serial, force: :cascade do |t|
+    t.text "last_name", null: false
+    t.text "first_name", null: false
+    t.text "title"
+    t.integer "reports_to"
+    t.datetime "birth_date", precision: nil
+    t.datetime "hire_date", precision: nil
+    t.text "address"
+    t.text "city"
+    t.text "state"
+    t.text "country"
+    t.text "postal_code"
+    t.text "phone"
+    t.text "fax"
+    t.text "email"
+  end
+
+  create_table "genres", id: :serial, force: :cascade do |t|
+    t.text "name"
+  end
+
+  create_table "invoice_lines", id: :serial, force: :cascade do |t|
+    t.integer "invoice_id", null: false
+    t.integer "track_id", null: false
+    t.decimal "unit_price", precision: 10, scale: 2, null: false
+    t.integer "quantity", null: false
+  end
+
+  create_table "invoices", id: :serial, force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.datetime "invoice_date", precision: nil, null: false
+    t.text "billing_address"
+    t.text "billing_city"
+    t.text "billing_state"
+    t.text "billing_country"
+    t.text "billing_postal_code"
+    t.decimal "total", precision: 10, scale: 2, null: false
   end
 
   create_table "lessons", id: :serial, force: :cascade do |t|
@@ -75,6 +139,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_232448) do
     t.timestamptz "updated_at", default: -> { "now()" }, null: false
     t.text "markdown"
     t.text "gist"
+  end
+
+  create_table "media_types", id: :serial, force: :cascade do |t|
+    t.text "name"
+  end
+
+  create_table "playlist_tracks", primary_key: ["playlist_id", "track_id"], force: :cascade do |t|
+    t.integer "playlist_id", null: false
+    t.integer "track_id", null: false
+  end
+
+  create_table "playlists", id: :serial, force: :cascade do |t|
+    t.text "name"
   end
 
   create_table "spina_accounts", id: :serial, force: :cascade do |t|
@@ -311,6 +388,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_232448) do
     t.datetime "password_reset_sent_at", precision: nil
   end
 
+  create_table "tracks", id: :serial, force: :cascade do |t|
+    t.text "name", null: false
+    t.integer "album_id", null: false
+    t.integer "media_type_id", null: false
+    t.integer "genre_id"
+    t.text "composer"
+    t.integer "milliseconds", null: false
+    t.integer "bytes"
+    t.decimal "unit_price", precision: 10, scale: 2, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "name"
@@ -328,5 +416,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_232448) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "albums", "artists", name: "albums_artist_id_fkey"
+  add_foreign_key "invoice_lines", "invoices", name: "invoice_lines_invoice_id_fkey"
+  add_foreign_key "invoices", "customers", name: "invoices_customer_id_fkey"
   add_foreign_key "lessons", "courses", name: "lessons_course_id_fkey"
+  add_foreign_key "playlist_tracks", "playlists", name: "playlist_tracks_playlist_id_fkey"
+  add_foreign_key "playlist_tracks", "tracks", name: "playlist_tracks_track_id_fkey"
+  add_foreign_key "tracks", "albums", name: "tracks_album_id_fkey"
 end
