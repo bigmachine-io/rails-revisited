@@ -1,0 +1,2 @@
+INSERT INTO spina_page_translations (id, spina_page_id, locale, title, menu_title, description, seo_title, materialized_path, created_at, updated_at, url_title) VALUES
+(341, 341, 'en', 'So, this is Rails, innit?', NULL, NULL, NULL, '/', '2024-04-01 16:24:45.475358', '2024-04-01 16:27:04.206653', NULL);
