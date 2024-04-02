@@ -25,7 +25,7 @@ Rails.application.configure do
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
-
+ 
   # Do not fall back to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
@@ -76,7 +76,14 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { host: 'rails.bigmachine.io'}
+  config.action_mailer.perform_caching = false
+  config.action_mailer.smtp_settings = { 
+    address: ENV['AWS_SES_HOST'], 
+    user_name: ENV['AWS_SES_USER'], 
+    password: ENV['AWS_SES_PASS'],
+  }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
