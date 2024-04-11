@@ -1,24 +1,3 @@
-# README
+# The Source Code for Rails Revisited
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Here's the source for [https://sales.bigmachine.io/rails-revisited]. This is the actual source I built for the production, and if you have any questions or suggestions, please pop an issue!
